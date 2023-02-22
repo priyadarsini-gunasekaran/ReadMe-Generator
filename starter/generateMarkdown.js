@@ -1,140 +1,50 @@
-function generateMarkdown(userResponses, userInfo) {
+function generateMarkdown(response) {
+  var content = `# ${response.title}'
 
-    // Generate Table of Contents conditionally based on userResponses
-    let draftToC = `## Table of Contents`;
+  ## Table of Contents
+  * [Repository Description](#Repository-Description)
+  * [Installation Instructions](#Install)
+  * [Usage Information](#Usage)
+  *[References](#Ref)
+  * [Repositiory End-Goal Criterea](#Criterea)
+  * [Future Project](#Future-Project)
+  ${response.TableofContents}
   
-    if (userResponses.installation !== '') { draftToC += `
-    * [Installation](#installation)` };
+  # Repository Description
+  ###### [Back to Table of Contents](#Table-of-Contents)
+  ${response.description}
+
+  ## Installation
+  #### To install necessary dependencies, run the following command:
+  npm install and inquirer @6.5.0
+  ${response.Installation}
+  ## Usage
   
-    if (userResponses.usage !== '') { draftToC += `
-    * [Usage](#usage)` };
+  #### You can use this applicaiton by running node index.js
+  ${response.Usage}
   
-    if (userResponses.contributing !== '') { draftToC += `
-    * [Contributing](#contributing)` };
+  ## License
   
-    if (userResponses.tests !== '') { draftToC += `
-    * [Tests](#tests)` };
-  
-  
-    // Generate markdown for the top required portions of the README
-    let draftMarkdown = 
-    `# ${userResponses.title}
-    ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor)
-    
-    Check out the badges hosted by [shields.io](https://shields.io/).
-    
-    
-    ## Description 
-    
-    *The what, why, and how:* 
-    
-    ${userResponses.description}
-    `
-  
-    // Add Table of Contents to markdown
-    draftMarkdown += draftToC;
-   
-    // Add License section since License is required to Table of Contents
-    draftMarkdown += `
-    * [License](#license)`;
-    
-  
-    // Optional Installation section
-    if (userResponses.installation !== '') {
-    
-    draftMarkdown +=
-    `
-    
-    ## Installation
-    
-    *Steps required to install project and how to get the development environment running:*
-    
-    ${userResponses.installation}`
-    };
-    
-  
-    // Optional Usage section
-    if (userResponses.usage !== '') {
-    
-    draftMarkdown +=
-    
-    `
-    
-    ## Usage 
-    
-    *Instructions and examples for use:*
-    
-    ${userResponses.usage}`
-    };
-    
-    
-    // Optional Contributing section
-    if (userResponses.contributing !== '') {
-  
-    draftMarkdown +=
+  ####This project is licensed under the MIT license.
+  ${response.License}
       
-    `
-    
-    ## Contributing
-    
-    *If you would like to contribute it, you can follow these guidelines for how to do so.*
-    
-    ${userResponses.contributing}`
-    };
-    
+  ## Contributing Here Is A Header
   
-    // Optional Tests section
-    if (userResponses.tests !== '') {
-    
-    draftMarkdown +=
-    `
-    
-    ## Tests
-    
-    *Tests for application and how to run them:*
-    
-    ${userResponses.tests}`
-    };
+  ####Fork and pull request.
+  ${response.Contributing}
   
+  ## Tests
   
-    // License section is required
-    draftMarkdown +=
-    `
-    
-    ## License
-    
-    ${userResponses.license}
-    `;
+  ####To run tests, run the following command:npm test
+  ${response.Test}
   
+  ## Questions
   
-    // Questions / About Developer section
-    let draftDev = 
-    `
-    ---
-    
-    ## Questions?
-    <img src="${userInfo.avatar_url}" alt="${userInfo.login}" width="40%" />
-    
-    For any questions, please contact me with the information below:
-   
-    GitHub: [@${userInfo.login}](${userInfo.url})
-    `;
+  ####If you have any questions about the repo, open an issue or contact me directly at priyasatish1626@gmail.com. You can find more of my work athttps://github.com/priyadarsini-gunasekaran/
   
-    // If GitHub email is not null, add to Developer section
-    if (userInfo.email !== null) {
-    
-    draftDev +=
-    `
-    Email: ${userInfo.email}
-    `};
-  
-    // Add developer section to markdown
-    draftMarkdown += draftDev;
-  
-    // Return markdown
-    return draftMarkdown;
-    
-  }
-  
-  module.exports = generateMarkdown;
- 
+  ${response.Question}
+return content; 
+};
+
+
+module.exports = generateMarkdown;
